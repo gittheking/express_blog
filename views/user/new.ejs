@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<body>
+<% include ../partials/header %>
+<main>
+  <div class="form-container">
+    <form action="/user/new" method="post">
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="text" name="username" placeholder="Username">
+      <input type="text" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <input type="password" name="password_confirm" placeholder="Confirm Password">
+      <input type="submit" value="Create User">
+    </form>
+  </div>
+</main>
+<% include ../partials/footer %>
+</body>
+</html>

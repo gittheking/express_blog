@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<body>
+  <% include ../partials/header %>
+  <main>
+    <div class="user-info">
+      <img src="/img/avatar.png" alt="default avatar">
+      <div>
+        <h2><%= user.username %></h2>
+        <p id="join-date">Member since <%= user.created_at %></p>
+        <h2>Popular Posts</h2>
+        <ul>
+          <% if(posts.length > 0) { %>
+          <% let postsLength = posts.length > 5 ? 5 : posts.length %>
+          <% for(let i=0; i < postsLength; i++){ %>
+          <li><a href="/post/<%=posts[i].post_id%>">
+            <%= posts[i].title %> 
+          </a><span><%= posts[i].created_at %></span></li>
+          <% } %>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <% include ../partials/footer %>
+</body>
+</html>

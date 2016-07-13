@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<body>
+  <% include ../partials/header %>
+  <main>
+  <div class="form-container">
+    <form action="/user/login" method="post">
+      <input type="text" name="email" placeholder="Email">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="Login">
+    </form>
+  </div>
+  </main>
+  <% include ../partials/footer %>
+</body>
+</html>

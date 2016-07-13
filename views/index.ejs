@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<% include ./partials/head %>
+<body>
+  <% include ./partials/header %>
+  <main>
+    <div class="posts-container">
+      <% if(posts) { %>
+        <ul>
+          <% posts.forEach(post => { %>
+          <li class="homepage-post-title">
+            <a href="/post/<%=post.post_id%>">
+              <%= post.title %>
+            </a>
+          </li>
+          <li class="homepage-post-info">by <a href="/user/show/<%=post.user_id%>"><%=post.username%></a> at <%=post.created_at%></li>
+          <% }) %>
+        </ul>
+      <% } %>
+      <% if(currentUser) { %>
+      <a href="/post/new">Add a new post</a>
+      <% } %>
+    </div>
+  </main>
+  <% include ./partials/footer %>
+</body>
+</html>
