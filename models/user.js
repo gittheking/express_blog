@@ -14,6 +14,8 @@ function getAllUsers(req,res,next) {
 }
 
 function getUser(req,res,next) {
+  console.log(req.params.id);
+  console.log(typeof req.params.id);
   db.one(`SELECT *
           FROM users
           WHERE user_id=$1`,[req.params.id])
@@ -27,18 +29,22 @@ function getUser(req,res,next) {
 }
 
 function findUserIDByUsername(req,res,next) {
-  console.log('In findUserIDByUsername, req.session.user: ', req.session.user);
-  db.one(`SELECT user_id
-          FROM users
-          WHERE username=$1`,
-          [req.session.user])
-    .then( data => {
-      res.userID = data.user_id;
-      next();
-    })
-    .catch( error => {
-      console.log('Error ',error);
-    });
+  if(req.session.user) {
+    console.log('In findUserIDByUsername, req.session.user: ', req.session.user);
+    db.one(`SELECT user_id
+            FROM users
+            WHERE username=$1`,
+            [req.session.user])
+      .then( data => {
+        res.userID = data.user_id;
+        next();
+      })
+      .catch( error => {
+        console.log('Error ',error);
+      });
+  } else {
+    next();
+  }
 }
 
 function createSecure(email, password, callBack) {
@@ -63,7 +69,7 @@ function createUser(req,res,next) {
               hash])
         .then( data => {
           console.log('Successfully added new entry');
-          req.session.user = { username: req.body.username };
+          req.session.user = req.body.username;
           next();
         })
         .catch( error => {

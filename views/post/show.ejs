@@ -5,13 +5,31 @@
   <% include ../partials/header %>
   <main>
     <div class="post-info">
-      <h3><%= post.title %> 
-      </h3>
-      <p id="post-author-info">
+      <div class="post-title">
+        <div class="post-vote">
+          <ul>
+            <li class="up-vote">
+              <form action="/post/upvote/<%= post.post_id %>?_method=PUT" method="POST">
+                <input type="submit" value="&#x2191;">
+              </form>
+            </li>
+            <li><%= likers.length %></li>
+            <li class="down-vote">
+              <form action="/post/downvote/<%= post.post_id %>?_method=PUT" method="POST">
+                <input type="submit" value="&#x2193;">
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div class="post-title-content">
+          <h3><%= post.title %></h3>
+          <p><%= post.description %></p>
+        </div>
+      </div>
+      <footer id="post-author-info">
         by <a href="/user/show/<%=post.user_id%>"><%= post.username %></a> 
         at <%= post.created_at %>
-      </p>
-      <p><%= post.description %></p>
+      </footer>
     </div>
   </main>
   <% include ../partials/footer %>

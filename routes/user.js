@@ -1,11 +1,12 @@
-const router              = require('express').Router();
+const router                   = require('express').Router();
 const { getAllUsers,
         getUser,
         createUser,
         updateUser,
         deleteUser,
         loginUser,
-        logoutUser }      = require('../models/user');
+        logoutUser,
+        findUserIDByUsername } = require('../models/user');
 const { getPostsForUser } = require('../models/post');
 
 router.get('/new', (req,res) => {
@@ -43,13 +44,17 @@ router.get('/logout',logoutUser,(req,res) => {
   res.redirect('/');
 });
 
-router.get('/profile',(req,res) => {
-  let currentUser = req.session.user;
-  res.render('user/profile', {title: 'Profile', currentUser });
+router.get('/profile',findUserIDByUsername,(req,res) => {
+  // let currentUser = req.session.user;
+  // res.render('user/profile', {title: 'Profile', currentUser });
+  res.redirect(`/user/show/${res.userID}`);
+  // console.log(typeof res.userID);
+  // res.redirect('/');
 })
 
 router.get('/show/:id',getUser,getPostsForUser,(req,res) => {
   let currentUser = req.session.user;
+  console.log(res.posts);
   res.render('user/show', { title: 'User Info',
                             currentUser: currentUser,
                             user: res.userInfo,
