@@ -11,18 +11,39 @@
         <p id="join-date">Member since <%= user.created_at %></p>
         <h2>Popular Posts</h2>
         <ul>
-          <% if(posts.length > 0) { %>
+          <% if(posts && posts.length > 0) { %>
           <% let postsLength = posts.length > 5 ? 5 : posts.length %>
           <% for(let i=0; i < postsLength; i++){ %>
           <li><a href="/post/<%=posts[i].post_id%>">
-            <%= posts[i].title %> 
-          </a><span><%= posts[i].created_at %></span></li>
+            <%= posts[i].title %>
+          </a>
+          [ <%= posts[i].score %> ] 
+          <span><%= posts[i].created_at %></span></li>
           <% } %>
+          <% } else { %>
+            <i>No posts to show here :(</i>
           <% } %>
         </ul>
       </div>
+      <% if(currentUser === user.username) { %>
+        <button class="edit-profile">Edit Profile</button>
+      <% } %>
     </div>
   </main>
+  <div class="my-modal">
+    <div class="my-modal-content">
+     <span id="close-modal">x</span> 
+     <form action="/user/update" method="post">
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="text" name="username" placeholder="Username">
+      <input type="text" name="email" placeholder="Email">
+      <input type="password" name="password_confirm" placeholder="Confirm Password To Edit">
+      <input type="submit" value="Create User">
+    </form>
+    </div>
+  </div>
   <% include ../partials/footer %>
+  <script type="text/javascript" src="/js/modal.js"></script>
 </body>
 </html>
