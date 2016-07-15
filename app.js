@@ -32,7 +32,7 @@ app.use(methodOverride('_method'));
 app.use('/',homeRoute);
 app.use('/user',userRoute);
 app.use('/post',postRoute);
-app.use('*',errorRoutes);
+app.use('/*',errorRoutes);
 
 app.listen(port,() => {
   console.log('Server is listening on port ',port);
