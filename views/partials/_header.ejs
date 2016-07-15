@@ -1,0 +1,29 @@
+  <header>
+    <h1>Express Blog</h1>
+    <nav>
+      <ul>
+        <% if(title !== 'Express Blog') { %>
+        <li><a href="/">Home</a></li>
+        <li> | </li>
+        <% } %>
+        <% if( currentUser === undefined) { %>
+          <% if(title !== 'Sign Up') { %>
+          <li><a href="/user/new">Sign Up</a></li>
+            <% if( title === 'Express Blog' /*|| title === 'User Info'*/) {%>
+            <li> | </li>
+            <% } %>
+          <% } %>
+          <% if(title !== 'Login') { %>
+          <% if(title === 'User Info' || title !== 'Express Blog' && title !== 'Sign Up') { %>
+            <li> | </li>
+          <% } %>
+          <li><a href="/user/login">Login</a></li>
+          <% } %>
+        <% } else { %>
+          <li><a href="/user/logout">Logout</a></li>
+          <li> | </li>
+          <li><a href="/user/profile">Profile</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>

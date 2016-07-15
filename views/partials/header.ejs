@@ -1,25 +1,21 @@
   <header>
     <h1>Express Blog</h1>
-    <nav>
+    <div class="burger-button">&#9776;</div>
+    <nav class="menu">
       <ul>
         <% if(title !== 'Express Blog') { %>
-        <li><a href="/">Home</a></li>
-        <li> | </li>
+        <a href="/"><li>Home</li></a>
         <% } %>
         <% if( currentUser === undefined) { %>
           <% if(title !== 'Sign Up') { %>
-          <li><a href="/user/new">Sign Up</a></li>
-            <% if( title === 'Express Blog' /*|| title === 'User Info'*/) {%>
-            <li> | </li>
-            <% } %>
+          <a href="/user/new"><li>Sign Up</li></a>
           <% } %>
           <% if(title !== 'Login') { %>
-          <li><a href="/user/login">Login</a></li>
+          <a href="/user/login"><li>Login</li></a>
           <% } %>
         <% } else { %>
-          <li><a href="/user/logout">Logout</a></li>
-          <li> | </li>
-          <li><a href="/user/profile">Profile</a></li>
+          <a href="/user/logout"><li>Logout</li></a>
+          <a href="/user/profile"><li>Profile</li></a>
         <% } %>
       </ul>
     </nav>
