@@ -20,7 +20,7 @@ footer {
 header h1 {
   margin: 0 0 0 10px;
   line-height: 80px;
-  font-size: 60px;
+  font-size: 80px;
   text-shadow: -1px 1px #EFEFEF;
 }
 
@@ -317,6 +317,7 @@ input[type="submit"], button {
   margin-left: 10px;
   font-size: 35px;
   width: 1em;
+  -webkit-user-select: none;
   cursor: pointer;
   cursor: hand;
 }
